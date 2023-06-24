@@ -1,10 +1,49 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar class="header">
     <ion-title>
-      Home
+      Start
     </ion-title>
+    <ion-avatar id="click-trigger" slot="end">
+      <img class="avatar" alt="Profilbild" src="{{user?.Profilbild}}" />
+    </ion-avatar>
+    <ion-popover trigger="click-trigger" triggerAction="click">
+      <ng-template>
+        <ion-content class="ion-padding">
+          <div>
+            <a class="logout" (click)="openProfile()">Profil
+              <ion-icon slot="end" name="person-outline"></ion-icon>
+            </a>
+            <a class="logout" (click)="logout()">Logout
+              <ion-icon slot="end" name="exit-outline"></ion-icon>
+            </a>
+          </div>
+        </ion-content>
+      </ng-template>
+    </ion-popover>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <div class="wrapper">
+    <h1 class="greeting">Hallo {{user?.Vorname}}!</h1>
+    <div class="buttons-card">
+      <ion-button size="large" class="upgrade-button" shape="round" color="{{devices?.length ? 'warning' : 'medium'}}" fill="{{devices?.length ? 'solid' : 'outline'}}" [disabled]="devices?.length === 0" (click)="openUpgrade()">
+        Jetzt analysieren
+      </ion-button>
+      <ion-button size="large" class="upgrade-button" shape="round" color="{{anaylse ? 'success' : 'medium'}}" fill="{{anaylse ? 'solid' : 'outline'}}" [disabled]="!anaylse"  (click)="openUpgrade()">
+        Optimieren
+      </ion-button>
+    </div>
+    <ion-card *ngIf="!user?.IstPremium">
+      <ion-card-header>
+        <ion-card-title>Hole dir jetzt dein Upgrade, um unsere Premium-Vorteile zu nutzen.</ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="upgrade-card">
+        <ion-button class="upgrade-button" shape="round" color="warning" (click)="openUpgrade()">
+          Jetzt Upgraden
+          <ion-icon name="trophy-outline"></ion-icon>
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

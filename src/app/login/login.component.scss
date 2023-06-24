@@ -1,0 +1,74 @@
+.login-image{
+  margin: 2rem 0;
+  width: 100px;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.form{
+  width: 100%;
+  padding: 0 20px;
+}
+.input-item{
+  padding-left: 20px;
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid var(--ion-color-light);
+  ion-input{
+    margin-top: -12px;
+  }
+}
+.ion-item{
+  margin-top: 20px;
+}
+
+.subtitle{
+  margin-top: 1rem;
+  color: white;
+}
+
+.login-button{
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 50px;
+  --border-radius: 12px;
+  margin-top: 60px;
+  --box-shadow: none;
+}
+
+.danger{
+  background-color: var(--ion-color-danger);
+}
+
+.google-button{
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 50px;
+  --border-radius: 12px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  --box-shadow: none;
+}
+.signup-text{
+  a{
+    text-decoration: none;
+    color: var(--ion-color-primary);
+  }
+  text-align: center;
+  font-size: 0.9rem;
+}
+ion-footer {
+  display: block;
+  // position: relative;
+  -ms-flex-order: 1;
+  order: 1;
+  width: 100%;
+  z-index: 10;
+}
+.copyright{
+  text-align: center;
+}

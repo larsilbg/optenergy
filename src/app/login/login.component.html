@@ -1,10 +1,113 @@
+<div class="ion-page">
 <ion-header >
-  <ion-toolbar>
-    <ion-title>
-      Home
-    </ion-title>
-  </ion-toolbar>
 </ion-header>
 <ion-content >
-  <ion-button (click)="login()">Login</ion-button>
+  <div class="container">
+    <ion-alert
+      [isOpen]="error"
+      header="Fehler"
+      message="{{errorMessage}}"
+      [buttons]="['OK']"
+      (didDismiss)="error=false"
+    ></ion-alert>
+    <ion-img class="login-image" src="../../assets/logo.png"></ion-img>
+    <ion-card-title> Optenergy</ion-card-title>
+    <form class="form" [formGroup]="formData">
+      <ion-item lines="none" class="ion-item">
+        <fieldset  class="input-item">
+          <legend>Email</legend>
+          <ion-input formControlName="Email" type="email" placeholder="name@domain.com"></ion-input>
+        </fieldset>
+      </ion-item>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Passwort</legend>
+          <ion-input formControlName="Passwort" type="password" placeholder="*******"></ion-input>
+        </fieldset>
+      </ion-item>
+      <p class="signup-text">Du hast keinen Account? <a id="open-modal">Registrieren</a></p>
+      <ion-button class="login-button" (click)="login()" expand="block">Login</ion-button>
+      <ion-button class="google-button" expand="block" color="light"><ion-icon name="logo-google"></ion-icon>&nbsp;&nbsp;Google Signin</ion-button>
+    </form>
+  </div>
+  <ion-modal #modal trigger="open-modal" [canDismiss]="canDismiss" [presentingElement]="presentingElement" [isOpen]="showRegister">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Registrieren</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="modal.dismiss()">Abbrechen</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <div class="container">
+          <form class="form" [formGroup]="formData">
+            <ion-item lines="none" class="ion-item">
+              <fieldset class="input-item">
+                <legend>Vorname</legend>
+                <ion-input formControlName="Vorname" type="text" placeholder="Vorname"></ion-input>
+              </fieldset>
+            </ion-item>
+            <ion-item lines="none" class="ion-item">
+              <fieldset class="input-item">
+                <legend>Nachname</legend>
+                <ion-input formControlName="Nachname" type="text" placeholder="Nachname"></ion-input>
+              </fieldset>
+            </ion-item>
+            <ion-item lines="none" class="ion-item">
+              <fieldset class="input-item">
+                <legend>Profilbild</legend>
+                <ion-input formControlName="Profilbild" type="text" placeholder="www.dein-Profilbild.de"></ion-input>
+              </fieldset>
+            </ion-item>
+            <ion-item lines="none" class="ion-item">
+              <fieldset class="input-item">
+                <legend>Telefon</legend>
+                <ion-input formControlName="Telefon" type="tel" placeholder="Telefonnummer"></ion-input>
+              </fieldset>
+            </ion-item>
+            <ion-item lines="none" class="ion-item">
+              <fieldset class="input-item">
+                <legend>Land</legend>
+                <ion-input formControlName="Land" type="text" placeholder="Land"></ion-input>
+              </fieldset>
+            </ion-item>
+            <ion-item lines="none" class="ion-item">
+              <fieldset class="input-item">
+                <legend>Email</legend>
+                <ion-input formControlName="Email" type="email" placeholder="name@domain.com"></ion-input>
+              </fieldset>
+            </ion-item>
+            <ion-item lines="none" class="ion-item">
+              <fieldset class="input-item">
+                <legend>Rechnungsadresse</legend>
+                <ion-input formControlName="Rechnungsadresse" type="text" placeholder="Rechnungsadresse"></ion-input>
+              </fieldset>
+            </ion-item>
+            <ion-item lines="none" class="ion-item">
+              <fieldset class="input-item">
+                <legend>Bankadresse</legend>
+                <ion-input formControlName="Bankadresse" type="text" placeholder="Bankadresse"></ion-input>
+              </fieldset>
+            </ion-item>
+            <ion-item lines="none" class="ion-item">
+              <fieldset class="input-item">
+                <legend>Strompreis</legend>
+                <ion-input formControlName="Strompreis" type="text" placeholder="0.40"></ion-input>
+              </fieldset>
+            </ion-item>
+            <ion-item lines="none" class="ion-item">
+              <fieldset class="input-item">
+                <legend>Passwort</legend>
+                <ion-input formControlName="Passwort" type="password" placeholder="*******"></ion-input>
+              </fieldset>
+            </ion-item>
+            <ion-button class="login-button" (click)="register()" expand="block">Registrieren</ion-button>
+          </form>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>
+</div>

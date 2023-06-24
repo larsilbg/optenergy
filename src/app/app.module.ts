@@ -9,11 +9,15 @@ import { AppComponent } from './app.component';
 import {LoginComponent} from "./login/login.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import {AuthGuard, LoggedInGuard} from "./auth-guard.service";
+import {AuthGuard, LoggedInGuard} from "./services/auth-guard.service";
+import {StartComponent} from "./start/start.component";
+import {AnalyseComponent} from "./analyse/analyse.component";
+import {OptimizeComponent} from "./optimize/optimize.component";
+import {NgChartsModule} from "ng2-charts";
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
+  declarations: [AppComponent, LoginComponent, StartComponent, AnalyseComponent, OptimizeComponent],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule, NgChartsModule.forRoot()],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, AuthGuard, LoggedInGuard],
   bootstrap: [AppComponent],
 })

@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Analyse</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <div class="analyse-header">
+        <ion-card-title>Deine Analyse</ion-card-title>
+        <ion-button id="open-picker"><ion-icon name="calendar-number-outline"></ion-icon></ion-button>
+      </div>
+    </ion-card-header>
+    <ion-card-content>
+      <canvas *ngIf="analyse" baseChart width="400" height="400"
+              [type]="'line'"
+              [data]="lineChartData"
+              [options]="lineChartOptions"
+              [legend]="lineChartLegend"
+              >
+      </canvas>
+      <ion-picker trigger="open-picker" [columns]="pickerColumns" [buttons]="pickerButtons"></ion-picker>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Mögliche Einsparung:</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="einsparung">
+        <p>
+        Mit einer Optimierung könntest du {{analyse?.ersparnisInkWH?.toString()?.substring(0,4)}} kWH sparen.
+        <ion-chip color="warning">{{analyse?.ersparnisInEuro?.toString()?.substring(0,4)}}€<ion-icon name="cash-outline"></ion-icon></ion-chip>
+        </p>
+        <ion-button href="tabs/optimize" shape="round" color="primary">Jetzt optimieren!</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

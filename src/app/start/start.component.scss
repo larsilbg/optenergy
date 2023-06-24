@@ -1,0 +1,43 @@
+.avatar{
+  padding: 5px;
+}
+
+.greeting{
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.wrapper{
+  width: 85%;
+  margin: auto;
+}
+
+.header{
+  background-color: var(--ion-background-color);
+}
+
+.upgrade-button{
+  width: 100%;
+  font-weight: bold;
+  margin: 1rem 0;
+}
+.upgrade-card{
+  display: flex;
+  justify-content: center;
+}
+
+.buttons-card{
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--ion-background-color);
+  justify-content: center;
+  align-items: center;
+}
+
+.logout{
+  color: white;
+  display: flex;
+  padding: 0.5rem;
+  justify-content: space-between;
+}

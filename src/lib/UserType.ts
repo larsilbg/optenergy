@@ -20,4 +20,11 @@ export type Devices = {
   AktivStartzeit: string;
   AktivEndzeit: string;
   SteckdosengruppeID: string;
+  Verbrauch?: number[];
+}
+
+export type Analyse = {
+  ersparnisInEuro: number;
+  ersparnisInkWH: number;
+  steckdosen: Devices[];
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {LoginService} from "../login.service";
+import {LoginService} from "../services/login.service";
 import {ActionSheetController, LoadingController} from "@ionic/angular";
 import {HttpErrorResponse} from "@angular/common/http";
 

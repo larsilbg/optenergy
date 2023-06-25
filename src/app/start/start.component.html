@@ -10,7 +10,7 @@
       <ng-template>
         <ion-content class="ion-padding">
           <div>
-            <a class="logout" (click)="openProfile()">Profil
+            <a class="logout" href="tabs/profile" >Profil
               <ion-icon slot="end" name="person-outline"></ion-icon>
             </a>
             <a class="logout" (click)="logout()">Logout
@@ -24,9 +24,16 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-alert
+    [isOpen]="loggedOut"
+    header="Fehler"
+    message="Du wurdest automatisch abgemeldet. Bitte logge dich erneut ein."
+    [buttons]="[logoutButton]"
+    (didDismiss)="loggedOut=false"
+  ></ion-alert>
   <div class="wrapper">
-    <h1 class="greeting">Hallo {{user?.Vorname}}!</h1>
     <div class="buttons-card">
+      <h1 class="greeting">Hallo {{user?.Vorname}}!</h1>
       <ion-card-subtitle> Letzte Analyse: {{lastAnalyse}} </ion-card-subtitle>
       <ion-nav-link style="width: 80%" router-direction="forward" [component]="devices?.length ? analyseComponent : ''">
         <ion-button size="large" class="upgrade-button" shape="round" color="{{devices?.length ? 'warning' : 'medium'}}" fill="{{devices?.length ? 'solid' : 'outline'}}" [disabled]="devices?.length === 0">

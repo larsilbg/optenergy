@@ -7,4 +7,29 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-card *ngFor="let device of devices">
+    <ion-card-header>
+      <div class="device-card-header">
+        <ion-card-title class="device-title">{{device.Bezeichnung}}</ion-card-title>
+        <ion-badge class="edit-badge" color="secondary">
+          <ion-icon class="edit-icon" name="build-outline"></ion-icon>
+        </ion-badge>
+      </div>
+    </ion-card-header>
+    <ion-card-content>
+      <div>
+          <ion-accordion-group>
+            <ion-accordion class="device-card-content" value="{{device.Bezeichnung}}">
+              <ion-item slot="header" class="accordion-item">
+                <ion-badge color="{{device.IstAn ? 'primary' : 'medium'}}">
+                  <ion-icon class="active-icon" name="{{device.IstAn ? 'flash-outline' : 'flash-off-outline'}}"></ion-icon>
+                </ion-badge>
+                <ion-label>{{device.Verbrauch}}</ion-label>
+              </ion-item>
+              <div class="ion-padding" slot="content">First Content</div>
+            </ion-accordion>
+          </ion-accordion-group>
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

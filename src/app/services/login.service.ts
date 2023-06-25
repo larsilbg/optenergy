@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {catchError, Observable, of} from "rxjs";
+import {BehaviorSubject, catchError, Observable, of, switchMap} from "rxjs";
+import {UserType} from "../../lib/UserType";
 
 @Injectable({
   providedIn: 'root'

@@ -1,0 +1,129 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button href="">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Dein Profil</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-alert
+    [isOpen]="error"
+    header="Fehler"
+    message="{{message}}"
+    [buttons]="['OK']"
+    (didDismiss)="error=false"
+  ></ion-alert>
+      <div style="display: flex; justify-content: center">
+        <ion-avatar>
+          <ion-img src="{{user?.Profilbild}}" alt="Profilbild"></ion-img>
+        </ion-avatar>
+      </div>
+      <div class="profil" *ngIf="!editMode">
+        <ion-list lines="full">
+          <ion-item>
+            <ion-label>Vorname</ion-label>
+            <ion-label>{{user?.Vorname}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Nachname</ion-label>
+            <ion-label>{{user?.Nachname}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Profilbild</ion-label>
+            <ion-label>{{user?.Profilbild}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Telefon</ion-label>
+            <ion-label>{{user?.Telefon}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Land</ion-label>
+            <ion-label>{{user?.Land}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Email</ion-label>
+            <ion-label>{{user?.Email}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Rechnungsadresse</ion-label>
+            <ion-label>{{user?.Rechnungsadresse}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Bankadresse</ion-label>
+            <ion-label>{{user?.Bankadresse}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Strompreis</ion-label>
+            <ion-label>{{user?.Strompreis}}</ion-label>
+          </ion-item>
+        </ion-list>
+        <div style="display: flex; justify-content: center">
+          <ion-button color="warning" (click)="editMode = true" class="update-button">Bearbeiten</ion-button>
+        </div>
+      </div>
+      <div class="container" *ngIf="editMode">
+        <form class="form" [formGroup]="formData">
+          <ion-item lines="none" class="ion-item">
+            <fieldset class="input-item">
+              <legend>Vorname</legend>
+              <ion-input formControlName="Vorname" type="text" placeholder="Vorname"></ion-input>
+            </fieldset>
+          </ion-item>
+          <ion-item lines="none" class="ion-item">
+            <fieldset class="input-item">
+              <legend>Nachname</legend>
+              <ion-input formControlName="Nachname" type="text" placeholder="Nachname"></ion-input>
+            </fieldset>
+          </ion-item>
+          <ion-item lines="none" class="ion-item">
+            <fieldset class="input-item">
+              <legend>Profilbild</legend>
+              <ion-input formControlName="Profilbild" type="text" placeholder="www.dein-Profilbild.de"></ion-input>
+            </fieldset>
+          </ion-item>
+          <ion-item lines="none" class="ion-item">
+            <fieldset class="input-item">
+              <legend>Telefon</legend>
+              <ion-input formControlName="Telefon" type="tel" placeholder="Telefonnummer"></ion-input>
+            </fieldset>
+          </ion-item>
+          <ion-item lines="none" class="ion-item">
+            <fieldset class="input-item">
+              <legend>Land</legend>
+              <ion-input formControlName="Land" type="text" placeholder="Land"></ion-input>
+            </fieldset>
+          </ion-item>
+          <ion-item lines="none" class="ion-item">
+            <fieldset class="input-item">
+              <legend>Email</legend>
+              <ion-input formControlName="Email" type="email" placeholder="name@domain.com"></ion-input>
+            </fieldset>
+          </ion-item>
+          <ion-item lines="none" class="ion-item">
+            <fieldset class="input-item">
+              <legend>Rechnungsadresse</legend>
+              <ion-input formControlName="Rechnungsadresse" type="text" placeholder="Rechnungsadresse"></ion-input>
+            </fieldset>
+          </ion-item>
+          <ion-item lines="none" class="ion-item">
+            <fieldset class="input-item">
+              <legend>Bankadresse</legend>
+              <ion-input formControlName="Bankadresse" type="text" placeholder="Bankadresse"></ion-input>
+            </fieldset>
+          </ion-item>
+          <ion-item lines="none" class="ion-item">
+            <fieldset class="input-item">
+              <legend>Strompreis</legend>
+              <ion-input formControlName="Strompreis" type="text" placeholder="0.40"></ion-input>
+            </fieldset>
+          </ion-item>
+          <div style="display: flex; justify-content: space-between; width: 90%; margin: auto">
+            <ion-button class="update-button" (click)="editMode = false" expand="block" color="danger">Abbrechen</ion-button>
+            <ion-button class="update-button" (click)="updateUser()" expand="block">Daten aktualisieren</ion-button>
+          </div>
+        </form>
+      </div>
+</ion-content>

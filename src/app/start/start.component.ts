@@ -4,6 +4,9 @@ import {Subscription} from "rxjs";
 import {UserService} from "../services/user.service";
 import {AnalyseComponent} from "../analyse/analyse.component";
 import {OptimizeComponent} from "../optimize/optimize.component";
+import {HttpErrorResponse} from "@angular/common/http";
+import {AlertButton} from "@ionic/angular";
+import {ProfileComponent} from "../profile/profile.component";
 
 @Component({
   selector: 'app-start',
@@ -13,18 +16,30 @@ import {OptimizeComponent} from "../optimize/optimize.component";
 export class StartComponent  implements OnInit {
   analyseComponent = AnalyseComponent;
   optimizeComponent = OptimizeComponent;
+  profileComponent = ProfileComponent;
   user?: UserType
   userSubscription: Subscription | undefined;
   analyse?: Analyse | null;
   devices?: Devices[];
   lastAnalyse?: any;
+  loggedOut: boolean = false;
+  logoutButton: AlertButton = {
+    text: 'Anmelden',
+    handler: () => {
+      this.logout()
+    }
+  }
 
   constructor(private userService: UserService) {}
 
   ngOnInit() {
     this.userService.getUser().subscribe(
       (user) => {
-        this.user = user
+        if (user instanceof HttpErrorResponse) {
+          this.loggedOut = true;
+        } else {
+          this.user = user
+        }
       }
     )
     this.userService.getDevices().subscribe(

@@ -5,6 +5,7 @@
 .greeting{
   font-weight: bold;
   font-size: 2rem;
+  margin-bottom: 3rem;
 }
 
 .wrapper{
@@ -27,7 +28,7 @@
 }
 
 .buttons-card{
-  margin-top: 2rem;
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   background-color: var(--ion-background-color);
@@ -36,6 +37,7 @@
 }
 
 .logout{
+  text-decoration: none;
   color: white;
   display: flex;
   padding: 0.5rem;

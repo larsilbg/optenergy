@@ -138,4 +138,11 @@ export class UserService {
       catchError(err => of(err))
     );
   }
+
+  sendSupportMessage(empfaenger: string,betreff: string, text: string){
+    const req = localStorage.getItem('token');
+    return this.http.post(`${this.API_URL}support/`, {empfaenger:empfaenger,betreff: betreff, text: text},{headers: {'Authorization': `${req}`}}).pipe(
+      catchError(err => of(err))
+    );
+  }
 }

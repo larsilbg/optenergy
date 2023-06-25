@@ -13,6 +13,9 @@
             <a class="logout" href="tabs/profile" >Profil
               <ion-icon slot="end" name="person-outline"></ion-icon>
             </a>
+            <a class="logout" href="tabs/support">Support
+              <ion-icon name="information-circle-outline"></ion-icon>
+            </a>
             <a class="logout" (click)="logout()">Logout
               <ion-icon slot="end" name="exit-outline"></ion-icon>
             </a>
@@ -35,7 +38,7 @@
     </ion-segment>
   </div>
   <div *ngIf="activePage ==='devices' ">
-    <ion-searchbar class="search-bar" (ionInput)="filterDevices($event)"></ion-searchbar>
+    <ion-searchbar  mode="ios" class="search-bar" (ionInput)="filterDevices($event)"></ion-searchbar>
     <ion-card *ngFor="let device of devices">
       <ion-card-header>
         <div style="display: flex;flex-flow:column; align-items: center">

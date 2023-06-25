@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
 import {OptimizeComponent} from "../optimize/optimize.component";
 import {ProfileComponent} from "../profile/profile.component";
+import {SupportComponent} from "../support/support.component";
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent,
+      },
+      {
+        path: 'support',
+        component: SupportComponent,
       },
       {
         path: '',

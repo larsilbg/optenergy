@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button href="">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Support</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-alert
+    [isOpen]="open"
+    header="Fehler"
+    message="{{message}}"
+    [buttons]="['OK']"
+    (didDismiss)="open=false"
+  ></ion-alert>
+  <form class="form" [formGroup]="formData">
+    <ion-item lines="none" class="ion-item">
+      <fieldset  class="input-item">
+        <legend>Betreff</legend>
+        <ion-input formControlName="betreff" type="text" placeholder="Dein Betreff"></ion-input>
+      </fieldset>
+    </ion-item>
+    <ion-item lines="none" class="ion-item">
+      <fieldset class="input-item">
+        <legend>Text</legend>
+        <ion-textarea formControlName="text" type="text" placeholder="Worum gehts?"></ion-textarea>
+      </fieldset>
+    </ion-item>
+    <ion-button class="send-button" (click)="send()" expand="block">Senden</ion-button>
+  </form>
+
+</ion-content>

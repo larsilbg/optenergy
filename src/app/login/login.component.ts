@@ -96,23 +96,4 @@ export class LoginComponent  implements OnInit {
         }
       })
   }
-
-  canDismiss = async () => {
-    const actionSheet = await this.actionSheetCtrl.create({
-      header: 'Bist du dir sicher?',
-      buttons: [
-        {
-          text: 'Ja',
-          role: 'confirm',
-        },
-        {
-          text: 'Nein',
-          role: 'cancel',
-        },
-      ],
-    });
-    actionSheet.present();
-    const { role } = await actionSheet.onWillDismiss();
-    return role === 'confirm';
-  };
 }

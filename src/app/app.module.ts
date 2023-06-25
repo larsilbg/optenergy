@@ -15,10 +15,11 @@ import {AnalyseComponent} from "./analyse/analyse.component";
 import {OptimizeComponent} from "./optimize/optimize.component";
 import {NgChartsModule} from "ng2-charts";
 import {ProfileComponent} from "./profile/profile.component";
+import {SupportComponent} from "./support/support.component";
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, StartComponent, AnalyseComponent, OptimizeComponent, ProfileComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule, NgChartsModule.forRoot()],
+  declarations: [AppComponent, LoginComponent, StartComponent, AnalyseComponent, OptimizeComponent, ProfileComponent, SupportComponent],
+  imports: [BrowserModule, IonicModule.forRoot({mode: 'ios'}), AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule, NgChartsModule.forRoot()],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, AuthGuard, LoggedInGuard],
   bootstrap: [AppComponent],
 })

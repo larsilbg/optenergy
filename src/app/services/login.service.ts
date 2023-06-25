@@ -28,7 +28,7 @@ export class LoginService {
       IstPremium: false,
       Rechnungsadresse: req.get('Rechnungsadresse'),
       Bankadresse: req.get('Bankadresse'),
-      Passwort: req.get('Passwort'),
+      Passwort: btoa(<string>req.get('Passwort')),
       Strompreis:req.get('Strompreis'),
     }
     return this.http.post(`${this.API_URL}`, body).pipe(

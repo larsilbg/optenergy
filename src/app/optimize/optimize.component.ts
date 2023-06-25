@@ -18,6 +18,7 @@ export class OptimizeComponent  implements OnInit {
     localStorage.removeItem('analyse');
     this.userService.optimize(this.analyse!).subscribe( (optimierung: Optimierung) => {
       this.optimierung = optimierung;
+      console.log(optimierung)
       this.devices = optimierung.steckdosen;
     })
   }

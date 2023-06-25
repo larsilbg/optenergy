@@ -23,6 +23,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'support',
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: '', component: LoginComponent,
     canActivate: [LoggedInGuard]
   },

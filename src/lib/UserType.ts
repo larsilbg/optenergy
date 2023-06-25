@@ -39,6 +39,6 @@ export type DeviceGroup = {
 export type Optimierung = {
   steckdosen: Device[];
   ersparnisInEuro: number;
-  ersparnisInkWH: number;
+  ersparnisInkWh: number;
   AutoOptimierung: boolean;
 }

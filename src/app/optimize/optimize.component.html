@@ -7,5 +7,28 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
-  <h1></h1>
+  <ion-card class="gz">
+    <ion-card-header>
+      <ion-card-title>Glückwunsch, dein Verbrauch ist jetzt optimiert.</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Du spartst jetzt {{optimierung?.ersparnisInkWH}}kWH Strom.
+      Deine Stromkosten wurden also um {{optimierung?.ersparnisInEuro}}€ reduziert!
+    </ion-card-content>
+  </ion-card>
+  <ion-card-title>Änderungen:</ion-card-title>
+  <ion-card *ngFor="let device of devices">
+    <ion-card-header>
+      <div style="display: flex;flex-flow:column; align-items: center">
+        <div class="device-card-header">
+          <ion-card-title class="device-title">{{device.Bezeichnung}}</ion-card-title>
+        </div>
+      </div>
+    </ion-card-header>
+    <ion-card-content>
+      <div style="width: 100%; display: flex; justify-content: center">
+        {{device.AktivStartzeit && device.AktivEndzeit ? device.AktivStartzeit + 'Uhr - ' + device.AktivEndzeit + 'Uhr' : 'Manuell'}}
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

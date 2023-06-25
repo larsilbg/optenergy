@@ -29,9 +29,8 @@ export class LoginService {
       Rechnungsadresse: req.get('Rechnungsadresse'),
       Bankadresse: req.get('Bankadresse'),
       Passwort: req.get('Passwort'),
-      Strompreis: req.get('Passwort'),
+      Strompreis:req.get('Strompreis'),
     }
-    console.log(body)
     return this.http.post(`${this.API_URL}`, body).pipe(
       catchError(err => of(err))
     );

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Analyse, Devices, UserType} from "../../lib/UserType";
+import {Analyse, Device, UserType} from "../../lib/UserType";
 import {Subscription} from "rxjs";
 import {UserService} from "../services/user.service";
 import {AnalyseComponent} from "../analyse/analyse.component";
@@ -20,7 +20,7 @@ export class StartComponent  implements OnInit {
   user?: UserType
   userSubscription: Subscription | undefined;
   analyse?: Analyse | null;
-  devices?: Devices[];
+  devices?: Device[];
   lastAnalyse?: any;
   loggedOut: boolean = false;
   logoutButton: AlertButton = {
@@ -50,10 +50,11 @@ export class StartComponent  implements OnInit {
     )
     this.userService.getLastAnalysis().subscribe(
       (analyse) => {
+        console.log(analyse)
         this.lastAnalyse = analyse.LetzteAnalyse
+        this.analyse = JSON.parse(<string>localStorage.getItem('analyse'));
       }
     )
-    this.analyse = JSON.parse(<string>localStorage.getItem('analyse'));
   }
 
   ngOnDestroy() {

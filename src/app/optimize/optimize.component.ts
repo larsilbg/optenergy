@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Analyse} from "../../lib/UserType";
+import {Analyse, Device, Optimierung} from "../../lib/UserType";
+import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-optimize',
@@ -8,10 +9,17 @@ import {Analyse} from "../../lib/UserType";
 })
 export class OptimizeComponent  implements OnInit {
   analyse?: Analyse | null;
-  constructor() { }
+  optimierung?: Optimierung;
+  devices? :Device[];
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.analyse = JSON.parse(<string>localStorage.getItem('analyse'));
+    localStorage.removeItem('analyse');
+    this.userService.optimize(this.analyse!).subscribe( (optimierung: Optimierung) => {
+      this.optimierung = optimierung;
+      this.devices = optimierung.steckdosen;
+    })
   }
 
 }

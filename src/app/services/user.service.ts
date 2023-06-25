@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, catchError, Observable, of, switchMap, tap} from "rxjs";
-import {Analyse, UserType} from "../../lib/UserType";
+import {Analyse, Device, UserType} from "../../lib/UserType";
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,9 @@ import {Analyse, UserType} from "../../lib/UserType";
 export class UserService {
 
   private userSubject = new BehaviorSubject<boolean>(true);
+  private deviceSubject = new BehaviorSubject<boolean>(true);
+  private groupSubject = new BehaviorSubject<boolean>(true);
+  private analyseSubject = new BehaviorSubject<boolean>(true);
 
   API_URL = "https://optenergy.immotickety.de/api/"
   constructor(private http:HttpClient) {
@@ -49,21 +52,89 @@ export class UserService {
 
   getDevices(): Observable<any>{
     const req = localStorage.getItem('token');
-    return this.http.get(`${this.API_URL}steckdosen/`, {headers: {'Authorization': `${req}`}}).pipe(
-      catchError(err => of(err))
-    );
+    return this.deviceSubject.pipe(
+      switchMap(() => {
+          return this.http.get(`${this.API_URL}steckdosen/`, {headers: {'Authorization': `${req}`}}).pipe(
+            catchError(err => of(err))
+          )
+        }
+      ))
   }
 
   getAnalysis(days: number): Observable<any>{
     const req = localStorage.getItem('token');
-    return this.http.get(`${this.API_URL}analyse/?days=${days}`, {headers: {'Authorization': `${req}`}}).pipe(
-      catchError(err => of(err))
+    const analyse = this.http.get(`${this.API_URL}analyse/?days=${days}`, {headers: {'Authorization': `${req}`}}).pipe(
+      catchError(err => of(err)),
+      tap((analyse) => { localStorage.setItem('analyse', JSON.stringify(analyse)); this.analyseSubject.next(true);})
     );
+    return analyse;
   }
 
   getLastAnalysis(): Observable<any>{
     const req = localStorage.getItem('token');
-    return this.http.get(`${this.API_URL}analyse/last/`, {headers: {'Authorization': `${req}`}}).pipe(
+    return this.analyseSubject.pipe(
+      switchMap(() => {
+      return this.http.get(`${this.API_URL}analyse/last/`, {headers: {'Authorization': `${req}`}}).pipe(
+        catchError(err => of(err))
+       );
+      }))
+  }
+
+  addDevice(device: Device) {
+    const req = localStorage.getItem('token');
+    return this.http.post(`${this.API_URL}steckdosen/`, device,{headers: {'Authorization': `${req}`}}).pipe(
+      catchError(err => of(err))
+    ).pipe(tap(() => {
+        this.deviceSubject.next(true);
+      }
+    ));
+  }
+
+  getDeviceGroups() {
+    const req = localStorage.getItem('token');
+    return this.deviceSubject.pipe(
+      switchMap(() => {
+          return this.http.get(`${this.API_URL}steckdosen/gruppen/`, {headers: {'Authorization': `${req}`}}).pipe(
+            catchError(err => of(err))
+          )
+        }))
+  }
+
+  editDevice(device: Device) {
+    const req = localStorage.getItem('token');
+    return this.http.put(`${this.API_URL}steckdosen/`, device,{headers: {'Authorization': `${req}`}}).pipe(
+      catchError(err => of(err))
+    ).pipe(tap(() => {
+        this.deviceSubject.next(true);
+      }
+    ));
+  }
+
+  addDeviceGroup(group: { Bezeichnung: string }) {
+    const req = localStorage.getItem('token');
+    return this.http.post(`${this.API_URL}steckdosen/gruppen/`, group,{headers: {'Authorization': `${req}`}}).pipe(
+      catchError(err => of(err))
+    ).pipe(tap(() => {
+        this.deviceSubject.next(true);
+        this.groupSubject.next(true);
+      }
+    ));
+  }
+
+  deleteDevice(SteckdosenID: string) {
+    const req = localStorage.getItem('token');
+    return this.http.delete(`${this.API_URL}steckdosen/?SteckdoseID=${SteckdosenID}`,{headers: {'Authorization': `${req}`}}).pipe(
+      catchError(err => of(err))
+    ).pipe(tap(() => {
+        this.deviceSubject.next(true);
+      }
+    ));
+  }
+
+  optimize(analyse: Analyse){
+    const req = localStorage.getItem('token');
+    this.analyseSubject.next(true)
+    return this.http.post(`${this.API_URL}optimierung/`, analyse,{headers: {'Authorization': `${req}`}}).pipe(
       catchError(err => of(err))
     );
   }

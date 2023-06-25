@@ -1,9 +1,14 @@
 .device-title{
 }
+.avatar{
+  padding: 5px;
+}
+
 
 .device-card-header{
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 
 .active-icon{
@@ -27,6 +32,42 @@
   width: 100%;
 }
 
-.accordion-item{
-  background-color: var(--ion-card-background) !important;
+.segment-container{
+  width: 90%;
+  margin: 2rem auto;
+}
+
+.search-bar{
+  width: 90%;
+  margin: auto;
+}
+
+.inline-creation{
+  margin: 1rem 0;
+  display: flex;
+  gap:5px;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-group{
+  background-color: #313131;
+  border: #313131 solid 1px;
+  border-radius: 5px;
+}
+
+.group-list-item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.logout{
+  text-decoration: none;
+  color: white;
+  display: flex;
+  padding: 0.5rem;
+  justify-content: space-between;
 }

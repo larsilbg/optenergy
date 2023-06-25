@@ -12,19 +12,33 @@ export type UserType = {
   Strompreis: number;
 }
 
-export type Devices = {
-  SteckdosenID: string;
+export type Device = {
+  SteckdoseID?: string;
   Bezeichnung: string;
   IstAn: boolean;
-  UserID: string;
-  AktivStartzeit: string;
-  AktivEndzeit: string;
+  UserID?: string;
+  AktivStartzeit: string | null
+  AktivEndzeit: string | null;
   SteckdosengruppeID: string;
+  SteckdosengruppeBezeichnung?: string;
   Verbrauch?: number[];
 }
 
 export type Analyse = {
   ersparnisInEuro: number;
+  ersparnisInkWh: number;
+  steckdosen: Device[];
+}
+
+export type DeviceGroup = {
+  SteckdosengruppeID: string;
+  Bezeichnung: string;
+  UserID: string;
+}
+
+export type Optimierung = {
+  steckdosen: Device[];
+  ersparnisInEuro: number;
   ersparnisInkWH: number;
-  steckdosen: Devices[];
+  AutoOptimierung: boolean;
 }

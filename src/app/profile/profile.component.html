@@ -120,9 +120,13 @@
               <ion-input formControlName="Strompreis" type="text" placeholder="0.40"></ion-input>
             </fieldset>
           </ion-item>
-          <div style="display: flex; justify-content: space-between; width: 90%; margin: auto">
-            <ion-button class="update-button" (click)="editMode = false" expand="block" color="danger">Abbrechen</ion-button>
-            <ion-button class="update-button" (click)="updateUser()" expand="block">Daten aktualisieren</ion-button>
+          <div style="display: flex; justify-content: space-evenly; width: 90%; margin: auto">
+            <ion-button class="update-button" (click)="editMode = false" expand="block" color="danger">
+              <ion-icon name="close-circle-outline"></ion-icon>
+            </ion-button>
+            <ion-button class="update-button" (click)="updateUser()" expand="block">
+              <ion-icon name="checkmark-circle-outline"></ion-icon>
+            </ion-button>
           </div>
         </form>
       </div>

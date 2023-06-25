@@ -2,7 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {UserService} from "../services/user.service";
 import {ChartType, ChartConfiguration, ChartOptions} from "chart.js";
 import { default as Annotation } from 'chartjs-plugin-annotation';
-import {Analyse, Devices} from "../../lib/UserType";
+import {Analyse, Device} from "../../lib/UserType";
 import {Subscription, timeout} from "rxjs";
 import {LoadingController} from "@ionic/angular";
 import {HttpErrorResponse} from "@angular/common/http";
@@ -43,8 +43,7 @@ export class AnalyseComponent  implements OnInit {
         setTimeout(() => {
           this.analysisSubscription = this.userService.getAnalysis(1).subscribe(
             (analyse) => {
-              localStorage.setItem('analyse', JSON.stringify(analyse));
-              analyse.steckdosen?.forEach((steckdose: Devices, index:number) => {
+              analyse.steckdosen?.forEach((steckdose: Device, index:number) => {
                 this.datasets.push({
                   data: steckdose.Verbrauch,
                   label: steckdose.Bezeichnung,
@@ -74,7 +73,7 @@ export class AnalyseComponent  implements OnInit {
     this.lineChartData.datasets = [];
     this.analysisSubscription = this.userService.getAnalysis(range).subscribe(
       (analyse) => {
-        analyse.steckdosen?.forEach((steckdose: Devices, index:number) => {
+        analyse.steckdosen?.forEach((steckdose: Device, index:number) => {
           this.lineChartData.datasets.push({
             data: steckdose.Verbrauch!,
             label: steckdose.Bezeichnung,

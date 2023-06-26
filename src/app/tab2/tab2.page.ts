@@ -13,6 +13,7 @@ export class Tab2Page implements OnInit{
   activePage: string = 'devices';
   addGroupObject?: DeviceGroup | undefined = undefined;
   devices!: Device[];
+  showAddDevice: boolean = false;
   createDevice: Device = {
     SteckdoseID: '',
     Bezeichnung: '',
@@ -38,18 +39,11 @@ export class Tab2Page implements OnInit{
   private createBezeichnung?: string;
 
   cancel() {
-    this.modal.dismiss(null, 'cancel');
+    this.showAddDevice = false;
   }
 
   confirm() {
     if (this.createDevice.Bezeichnung && this.createDevice.SteckdosengruppeID) {
-      this.modal.dismiss(this.createDevice, 'confirm');
-    }
-  }
-
-  onWillDismiss(event: Event) {
-    const ev = event as CustomEvent;
-    if (ev.detail.role === 'confirm') {
       this.loadingCtrl.create({
         message: 'Gerät wird hinzugefügt...'
       }).then(
@@ -66,6 +60,7 @@ export class Tab2Page implements OnInit{
                 SteckdosengruppeID: ""
               }
               loading.dismiss()
+              this.showAddDevice = false;
             }
           )
         }
@@ -202,5 +197,9 @@ export class Tab2Page implements OnInit{
         this.editDeviceOpen = false;
       }
     )
+  }
+
+  addDevice() {
+    this.showAddDevice =true;
   }
 }

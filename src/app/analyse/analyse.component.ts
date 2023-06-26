@@ -50,7 +50,8 @@ export class AnalyseComponent  implements OnInit {
                   fill: true,
                   tension: 0.5,
                   borderColor: this.getColor(index),
-                  backgroundColor: 'rgba(54,255,0,0.3)'
+                  borderWidth: 1,
+                  backgroundColor: 'rgba(255,255,255,0.05)'
                 })
               })
               analyse.steckdosen[0]?.Verbrauch.forEach((verbrauch: number, index: number) => {
@@ -80,7 +81,7 @@ export class AnalyseComponent  implements OnInit {
             fill: true,
             tension: 0.5,
             borderColor: this.getColor(index),
-            backgroundColor: 'rgba(54,255,0,0.3)'
+            backgroundColor: 'rgba(54,255,0,0.0)'
           })
         })
         analyse.steckdosen[0]?.Verbrauch.forEach((verbrauch: number, index: number) => {
@@ -94,19 +95,19 @@ export class AnalyseComponent  implements OnInit {
 
   getColor(index: number): string {
     const colors = [
-      "green",
-      "black",
+      "magenta",
+      "orange",
       "yellow",
       "cyan",
       "red",
       "white",
-      "blue",
-      "orange",
-      "purple",
       "pink",
+      "green",
+      "blue",
+      "purple",
       "gray",
       "brown",
-      "magenta"
+      "black",
     ];
     return colors[index];
   }

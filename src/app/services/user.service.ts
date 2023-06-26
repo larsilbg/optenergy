@@ -145,4 +145,11 @@ export class UserService {
       catchError(err => of(err))
     );
   }
+
+  getSparvorschlag(){
+    const req = localStorage.getItem('token');
+    return this.http.get(`${this.API_URL}sparvorschlaege/`,{headers: {'Authorization': `${req}`}}).pipe(
+      catchError(err => of(err))
+    );
+  }
 }

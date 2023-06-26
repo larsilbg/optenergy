@@ -17,6 +17,8 @@
       Deine Stromkosten wurden also um {{optimierung?.ersparnisInEuro}}€ reduziert!
     </ion-card-content>
   </ion-card>
+  <div style="display: flex; flex-flow: column; align-items: center">
+
   <ion-card-title>Änderungen:</ion-card-title>
   <ion-card *ngFor="let device of devices">
     <ion-card-header>
@@ -32,4 +34,5 @@
       </div>
     </ion-card-content>
   </ion-card>
+  </div>
 </ion-content>

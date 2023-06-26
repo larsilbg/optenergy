@@ -44,7 +44,7 @@
         </ion-button>
       </ion-nav-link>
       <ion-nav-link style="width: 80%" router-direction="forward" [component]="analyse ? optimizeComponent : ''">
-      <ion-button  mode="ios" size="large" class="upgrade-button" shape="round" color="{{analyse ? 'primary' : 'medium'}}" fill="{{analyse ? 'solid' : 'outline'}}" [disabled]="!analyse" (click)="openUpgrade()">
+      <ion-button  mode="ios" size="large" class="upgrade-button" shape="round" color="{{analyse ? 'primary' : 'medium'}}" fill="{{analyse ? 'solid' : 'outline'}}" [disabled]="!analyse" >
         Optimieren
       </ion-button>
       </ion-nav-link>
@@ -52,13 +52,23 @@
     <ion-card *ngIf="!user?.IstPremium">
       <img style="padding: 1rem" alt="Optenergy" src="./assets/opternegy.png" />
       <ion-card-header>
-        <ion-card-title>Hole dir jetzt dein Upgrade, um unsere Premium-Vorteile zu nutzen.</ion-card-title>
+        <ion-card-title style="font-size: 1.3rem">Hole dir jetzt dein Upgrade, um unsere Premium-Vorteile zu nutzen.</ion-card-title>
       </ion-card-header>
       <ion-card-content class="upgrade-card">
-        <ion-button mode="ios" class="upgrade-button" shape="round" color="warning" (click)="openUpgrade()">
+        <ion-button mode="ios" class="upgrade-button" shape="round" color="warning">
           Jetzt Upgraden
           <ion-icon name="trophy-outline"></ion-icon>
         </ion-button>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title style="font-size: 1.6rem">Sparvorschlag des Tages</ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="upgrade-card">
+        <p>
+          {{sparvorschlag}}
+        </p>
       </ion-card-content>
     </ion-card>
   </div>

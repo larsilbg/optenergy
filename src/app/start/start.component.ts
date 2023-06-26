@@ -18,6 +18,7 @@ export class StartComponent  implements OnInit {
   optimizeComponent = OptimizeComponent;
   profileComponent = ProfileComponent;
   user?: UserType
+  sparvorschlag?: string;
   userSubscription: Subscription | undefined;
   analyse?: Analyse | null;
   devices?: Device[];
@@ -40,6 +41,11 @@ export class StartComponent  implements OnInit {
         } else {
           this.user = user
         }
+        this.userService.getSparvorschlag().subscribe(
+          (sparvorschlag: {Sparvorschlag: string}) => {
+            this.sparvorschlag = sparvorschlag.Sparvorschlag
+          }
+        )
       }
     )
     this.userService.getDevices().subscribe(
@@ -65,13 +71,5 @@ export class StartComponent  implements OnInit {
     localStorage.removeItem('analyse');
     localStorage.removeItem('token');
     window.location.reload();
-  }
-
-  openUpgrade() {
-
-  }
-
-  openProfile() {
-
   }
 }
